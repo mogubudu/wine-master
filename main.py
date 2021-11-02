@@ -24,7 +24,7 @@ def main():
 
     grouped_wines = defaultdict(list)
     for wine in wines:
-        (grouped_wines[wine['Категория']].append(wine))
+        grouped_wines[wine['Категория']].append(wine)
 
     rendered_page = template.render(grouped_wines=grouped_wines,
                                     winery_age=winery_age)

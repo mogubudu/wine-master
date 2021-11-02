@@ -15,8 +15,8 @@ def main():
     template = env.get_template('template.html')
 
     this_year = datetime.datetime.now().year
-    year_of_foundation_of_the_winery = 1920
-    winery_age = this_year - year_of_foundation_of_the_winery
+    foundation_year = 1920
+    winery_age = this_year - foundation_year
 
     wines = read_excel('wine3.xlsx', na_values='nan', keep_default_na=False)
     wines = wines.sort_values('Категория')

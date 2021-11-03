@@ -8,20 +8,29 @@ from http.server import HTTPServer, SimpleHTTPRequestHandler
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 from pandas import read_excel
 
+
 def create_parser():
     parser = argparse.ArgumentParser()
+
     parser.add_argument(
         '--path_to_file',
         '-ptf',
         default='',
-        help='Specify the full path to the directory where your file is located')
+        help='''
+        Specify the full path to the
+        directory where your file is located
+        ''')
+
     parser.add_argument(
         '--file_name',
         '-f',
         default='wine.xlsx',
-        help='You can specify the name of the file with data. The name is specified together with the file type (only .xlsx)'
+        help='''You can specify the name of the file with data.
+        The name is specified together with the file type (only .xlsx)'''
     )
+
     return parser
+
 
 def main():
     env = Environment(
@@ -40,7 +49,11 @@ def main():
     path_to_file = parser_namespace.path_to_file
     file_name = parser_namespace.file_name
 
-    wines = read_excel(f'{path_to_file}{file_name}', na_values='nan', keep_default_na=False)
+    wines = read_excel(
+        f'{path_to_file}{file_name}',
+        na_values='nan',
+        keep_default_na=False)
+
     wines = wines.sort_values('Категория')
     wines = wines.to_dict(orient='record')
 
